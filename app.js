@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/entities', require('../cmsbackend/routes/entity'));
+app.use('/entities', require('./routes/entity'));
 
 // Sync database and start server
 sequelize.sync({ alter: true })
