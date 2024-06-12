@@ -1,9 +1,19 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('cms', 'postgres', 'postgres', {
-  dialect: 'postgres',
-  host: 'localhost'
-});
+let sequelize;
 
+if (process.env.DB_URL) {
+  sequelize = new Sequelize(process.env.DB_URL);
+} else {
+  sequelize = new Sequelize(
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PW,
+    {
+      host: 'localhost',
+      dialect: 'postgres',
+    },
+  );
+}
 const Entity = sequelize.define('entity', {
   name: {
     type: Sequelize.STRING,

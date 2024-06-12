@@ -20,8 +20,6 @@ router.post('/', async (req, res) => {
       }));
       return res.status(400).json({ errors });
     }
-
-    // Handle other errors
     console.error('Error creating entity with attributes:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
